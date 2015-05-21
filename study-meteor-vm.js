@@ -1,9 +1,6 @@
 Tasks = new Mongo.Collection("task");
 
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-  
   Template.form.events({
     "submit form": function(event){
       var name = event.target.name.value;
@@ -27,12 +24,6 @@ if (Meteor.isClient) {
   })
   
   Template.hello.viewmodel({
-    counter: function () {
-      return Session.get('counter');
-    },
-    addCounter: function () {
-      Session.set('counter', Session.get('counter') + 1);
-    },
     items: function(){
       return Tasks.find();
     }
