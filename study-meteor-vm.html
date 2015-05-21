@@ -7,8 +7,9 @@
 </body>
 
 <template name="form">
-  <form>
-    Name <input type="text" name="name">
+  <form data-bind="submit: addTask">
+    Name : <input type="text" data-bind="value: formName">
+     <input type="submit" value="Send">
   </form>
 </template>
 

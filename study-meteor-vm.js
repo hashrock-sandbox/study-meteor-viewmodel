@@ -1,18 +1,17 @@
 Tasks = new Mongo.Collection("task");
 
 if (Meteor.isClient) {
-  Template.form.events({
-    "submit form": function(event){
-      var name = event.target.name.value;
+  Template.form.viewmodel({
+    formName: "",
+    addTask: function(event){
+      event.preventDefault();
       Tasks.insert({
-        name: name,
+        name: this.formName(),
         created: new Date()
       });
-      event.target.name.value = "";
-      event.preventDefault();
+      this.formName("");
     }
-  });
-  
+  })
   Template.item.viewmodel(
     function(data) { return data; },{
       item: function(){
@@ -22,7 +21,6 @@ if (Meteor.isClient) {
         Tasks.remove(this._id());
       }
   })
-  
   Template.hello.viewmodel({
     items: function(){
       return Tasks.find();
