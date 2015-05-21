@@ -22,14 +22,24 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.item.viewmodel(function(data) { return data; },{
+  Template.item.viewmodel(
+    function(data) { return data; },{
       item: function(){
         Tasks.findOne(this._id());
       },
       removeItem: function(){
         Tasks.remove(this._id());
       }
-  });
+  })
+  
+  Template.hello.viewmodel({
+    counter: function () {
+      return Session.get('counter');
+    },
+    addCounter: function () {
+      Session.set('counter', Session.get('counter') + 1);
+    }
+  })
 }
 
 if (Meteor.isServer) {
