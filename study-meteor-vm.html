@@ -1,0 +1,23 @@
+<head>
+  <title>study-meteor-vm</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  {{#each items}}
+    <p>item</p>
+  {{/each}}
+  
+  <button data-bind="click: addCounter">Click Me</button>
+  <p>You've pressed the button <span data-bind="text: counter"></span> times.</p>
+</template>
+
+<template name="item">
+  {{name}}
+</template>
+
