@@ -1,14 +1,8 @@
 Tasks = new Mongo.Collection("task");
 
-
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
-  Template.hello.helpers({
-    items: function(){
-      return Tasks.find();
-    }
-  })
   
   Template.form.events({
     "submit form": function(event){
@@ -38,8 +32,11 @@ if (Meteor.isClient) {
     },
     addCounter: function () {
       Session.set('counter', Session.get('counter') + 1);
+    },
+    items: function(){
+      return Tasks.find();
     }
-  })
+  },"items")
 }
 
 if (Meteor.isServer) {
